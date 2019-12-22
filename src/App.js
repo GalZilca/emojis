@@ -1,28 +1,40 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
+import React, { useState } from "react";
 import "./App.css";
+import { Container, Form, Input, Button } from 'semantic-ui-react'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <button
-          onClick={() => {
-            alert("javascript working");
-          }}
-        >
-          Click
-        </button>
-      </div>
-    );
-  }
+function App() {
+  const [name, setName] = useState("")
+  const [mail, setMail] = useState("")
+
+  return (
+    <Container style={{ marginTop: 20 }}>
+      <h1>Emojis app</h1>
+      <Form className="App" style={{ marginTop: 80 }}>
+        <Form.Field>
+          <Input style={{ width: "370px" }}
+            placeholder="User name"
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+        </Form.Field>
+
+        <Form.Field>
+          <Input style={{ width: "370px" }}
+            placeholder="User mail"
+            value={mail}
+            onChange={e => setMail(e.target.value)}
+          />
+        </Form.Field>
+
+        <Form.Field>
+          <Button onClick={() => {
+            this.props.navigation.navigate('Chat')
+          }} > Log in
+          </Button>
+        </Form.Field>
+      </Form>
+    </Container>
+  )
 }
 
 export default App;
