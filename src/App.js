@@ -1,40 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import "./App.css";
-import { Container, Form, Input, Button } from 'semantic-ui-react'
+
+import { LogIn } from "./components/LogIn"
+import { Chat } from "./components/Chat"
+import { Error } from "./components/Error"
 
 function App() {
-  const [name, setName] = useState("")
-  const [mail, setMail] = useState("")
-
-  return (
-    <Container style={{ marginTop: 20 }}>
-      <h1>Emojis app</h1>
-      <Form className="App" style={{ marginTop: 80 }}>
-        <Form.Field>
-          <Input style={{ width: "370px" }}
-            placeholder="User name"
-            value={name}
-            onChange={e => setName(e.target.value)}
-          />
-        </Form.Field>
-
-        <Form.Field>
-          <Input style={{ width: "370px" }}
-            placeholder="User mail"
-            value={mail}
-            onChange={e => setMail(e.target.value)}
-          />
-        </Form.Field>
-
-        <Form.Field>
-          <Button onClick={() => {
-            this.props.navigation.navigate('Chat')
-          }} > Log in
-          </Button>
-        </Form.Field>
-      </Form>
-    </Container>
-  )
+  return (      
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={LogIn}/>
+        <Route exact path="/chat" component={Chat}/>
+        <Route component={Error}/>
+      </Switch>
+    </BrowserRouter>
+ );
 }
 
 export default App;
